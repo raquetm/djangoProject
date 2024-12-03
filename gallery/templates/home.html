@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<div class="row">
+  {% for artwork in artworks %}
+  <div class="col-md-4 mb-4">
+    <div class="card">
+      <img
+        src="{{ artwork.image.url }}"
+        class="card-img-top"
+        alt="{{ artwork.title }}"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ artwork.title }}</h5>
+        <p class="card-text">{{ artwork.description|truncatewords:5 }}</p>
+        <a href="{% url 'artworkDetail' artwork.id %}" class="btn btn-dark"
+          >Read More</a
+        >
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <p>No artworks available at the moment.</p>
+  {% endfor %}
+</div>
+{% endblock %}
